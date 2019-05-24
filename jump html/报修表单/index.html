@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>repireform</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .form{
+            padding-top: 40px;
+            margin:auto;
+            width: 60%;
+            height: 400px;
+            text-align: center;
+            border:1px solid #000
+
+        }
+        .fperson{
+            width: 40%;
+            height: 80px;
+            float: left;
+            overflow: hidden;
+        }
+        .fimage img{
+            margin-right: 20%;
+            float: right;
+            height: 180px;
+            width: 170px;
+        }
+        .location{
+            height: 177px;
+            width: 100px;
+            margin-left: 20%;
+        }
+        .fimage input{
+            position: absolute;
+            opacity: 0;
+            height: 180px;
+            width: 170px;
+            top: 25%;
+            right: 24%;
+            z-index: 9;
+        }
+        .fimage{
+            margin-right: 30px;
+            height: 180px;
+            width: 170px;
+            float: right;
+        }
+        .fquestion{
+            margin:auto;
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<h2 align="center">报修表单填写</h2>
+<br>
+<div class="form" >
+    <form action="" style="border: 1px">
+        <div class="fperson">
+            <b>姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名:</b>
+            &nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="text"><br><br>
+            <b>联&nbsp系&nbsp方&nbsp式：</b>
+            <input type="text" value="请填写手机号" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999">
+            <br><br>
+        </div>
+        <div class="fimage">
+            <input type="file" id="upimg" accept="image/*" onchange="upLoad()">
+            <div class="preSee"><img id="img" src="./images/upload.png" alt="" ></div>
+        </div>
+        <div class="location">
+            <p>选择报修地址</p>
+            &nbsp主&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp楼&nbsp<input type="radio" checked="checked" name="location" value="主楼" />
+            <br />
+            &nbsp航&nbsp海&nbsp&nbsp楼&nbsp<input type="radio" name="location" value="航海楼" />
+            <br />
+            &nbsp寝&nbsp&nbsp&nbsp&nbsp&nbsp室&nbsp&nbsp<input type="radio" name="location" value="寝室" />
+            <br />
+            其他地方&nbsp<input type="radio" name="location" value="其他地方" />
+        </div>
+        <div class="fquestion"> <br>
+            <input type="text" value="请填写详细地址和问题描述，不超过50字" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="height: 80px;width:80%;color:#999999">
+            <br>
+        </div>
+        <input type="submit" value="提交" style="width: 60px;height: 30px">
+        &nbsp&nbsp
+        <input type="reset" value="重新填写" style="width: 60px;height: 30px">
+    </form>
+</div>
+</body>
+<script>
+    function upLoad(){
+        var fileInput = document.getElementById("upimg");
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        var imgFile;
+        reader.onload=function(e) {
+            imgFile = e.target.result;
+            console.log(imgFile);
+            $("#img").attr('src',imgFile);
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+</html>
